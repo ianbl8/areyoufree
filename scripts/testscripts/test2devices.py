@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # test2devices.py
 # Ian Blake
 #
