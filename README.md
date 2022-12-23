@@ -36,4 +36,4 @@ The project is currently incomplete due to the following issues:
 
 4. The nmap service crashed regularly, also crashing the SSH terminal connection between my Windows laptop and the Raspberry Pi. Nmap also failed to find my laptop on occasion even though it was online.
 
-5. Despite being connected (finally) to the MQTT broker via websockets, the MQTT script in the (web page)[http://areyoufree.glitch.me/index.html] did not seem to subscribe properly or receive any messages. 
+5. Despite being connected (finally) to the MQTT broker via websockets, the MQTT script in the web page at http://areyoufree.glitch.me/index.html did not seem to subscribe properly or receive any messages. 
