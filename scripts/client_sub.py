@@ -19,15 +19,16 @@ def on_message(client, obj, msg):
 def on_subscribe(client, obj, mid, granted_qos):
     print("Subscribed, QOS granted: " + str(granted_qos))
 
-mqttc = mqtt.Client()
+mqttc = mqtt.Client(transport = "websockets")
 
 # assign event callbacks
 mqttc.on_connect = on_connect
 mqttc.on_message = on_message
 mqttc.on_subscribe = on_subscribe
 
-url = urlparse("mqtt://broker.emqx.io:1883/ianbl8/home")
+url = urlparse("ws://broker.hivemq.com:8000/mqtt/ianbl8/home")
 base_topic = url.path[1:]
+print(base_topic)
 if (url.username):
     mqttc.username_pw_set(url.username, url.password)
 

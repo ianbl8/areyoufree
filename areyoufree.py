@@ -29,12 +29,12 @@ def on_connect(client, userdata, flags, rc):
 def on_publish(client, obj, mid):
     print("MQTT message ID: " + str(mid))
 
-mqttc = mqtt.Client()
+mqttc = mqtt.Client(transport = "websockets")
 
 mqttc.on_connect = on_connect
 mqttc.on_publish = on_publish
 
-url = urlparse("mqtt://broker.emqx.io:1883/ianbl8/home")
+url = urlparse("ws://broker.hivemq.com:8000/mqtt/ianbl8/home")
 base_topic = url.path[1:]
 auth = None
 if (url.username):
@@ -122,6 +122,6 @@ while looping:
         user2_online = {'topic': base_topic + "/user2", 'payload': online1_json}
         msgs = [user1_busy, user1_online, user2_busy, user2_online]
         # publish messages
-        publish.multiple(msgs, hostname = url.hostname, port = url.port, auth = auth)
+        publish.multiple(msgs, hostname = url.hostname, port = url.port, auth = auth, transport = "websockets")
     
 
