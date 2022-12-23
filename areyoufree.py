@@ -29,10 +29,10 @@ ubit2.connect()
 time.sleep(1)
 
 # set devices to Free
-busy1 = False
-busy2 = False
-online1 = False
-online2 = False
+busy1 = "Free"
+busy2 = "Free"
+online1 = "Offline"
+online2 = "Offline"
 online1check = 0
 online2check = 0
 ubit1.pixels = [0b11110, 0b10000, 0b11100, 0b10000, 0b10000] # F
@@ -42,16 +42,16 @@ ubit2.pixels = [0b11110, 0b10000, 0b11100, 0b10000, 0b10000] # F
 def checkbusy():
     global busy1, busy2
     if ubit1.button_a > 0:
-        busy1 = False
+        busy1 = "Free"
         ubit1.pixels = [0b11110, 0b10000, 0b11100, 0b10000, 0b10000] # F
     elif ubit1.button_b > 0:
-        busy1 = True
+        busy1 = "Busy"
         ubit1.pixels = [0b11100, 0b10010, 0b11100, 0b10010, 0b11100] # B
     if ubit2.button_a > 0:
-        busy2 = False
+        busy2 = "Free"
         ubit2.pixels = [0b11110, 0b10000, 0b11100, 0b10000, 0b10000] # F
     elif ubit2.button_b > 0:
-        busy2 = True
+        busy2 = "Busy"
         ubit2.pixels = [0b11100, 0b10010, 0b11100, 0b10010, 0b11100] # B
 
 def checkonline():
@@ -68,21 +68,21 @@ def checkonline():
         online2check -= 1
     # update device statuses
     if online1check > 0:
-        online1 = True
+        online1 = "Online"
     else:
         online1check = 0
-        online1 = False
+        online1 = "Offline"
     if online2check > 0:
-        online2 = True
+        online2 = "Online"
     else:
         online2check = 0
-        online2 = False
+        online2 = "Offline"
 
 # display free/busy for each device
 while looping:
     checkbusy()
     checkonline()
     time.sleep(0.1)
-    print(f'User 1: Busy, {busy1}; Online, {online1} | User 2: Busy, {busy2}; Online, {online2}') # turn to JSON 
+    print(f'user1: {busy1}; {online1} | user2: {busy2}; {online2}') # turn to JSON 
     
 
